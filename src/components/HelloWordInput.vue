@@ -35,7 +35,7 @@ export default {
         console.log('this.$slots.default-------->', this.$slots.default)
         return (
             <div>   
-                {this.$slots.default || <slot v-bind:innerObj="innerObj">默认</slot>}
+                {this.$slots.default}
             </div>
         )
     }
