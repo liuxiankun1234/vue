@@ -7,18 +7,45 @@
             welcome to Your Vue.js App
         </div>
         
-        <component-sss :name="this.a"></component-sss>
+        <!-- <component-sss :name="this.a"></component-sss> -->
         <!-- <component-b :firstName="this.b" @modify="modify"></component-b> -->
 
         <!-- <component-c class="a1" data-component-name="component-c"></component-c> -->
         <!-- <component-c></component-c> -->
         <!-- <ComponentC/> -->
-        <component-d v-model="checked" :name="msg" @change="changeCheckbox"/>
+        <!-- <component-d v-model="checked" :name="msg" @change="changeCheckbox"/> -->
         <component-f :name.sync="msg"/>
 
-        <ComponentSlot>
-            ComponentSlot!!!
-        </ComponentSlot>
+
+        <br>
+        <br>
+        <br>
+        <h3>component-mixin</h3>
+        <component-mixin/>
+        
+        <br>
+        <br>
+        <br>
+        <h3>component-slot</h3>
+        <!-- <ComponentSlot>
+            <template #header="{bookInfo}">
+                title {{bookInfo.name}}
+            </template>
+            <template #default="{bookInfo: {name, price=12}}">
+                title 书籍名称{{name}} price: {{price}}
+            </template>
+            <template #footer>
+                ComponentSlot!!!    
+            </template>
+        </ComponentSlot> -->
+
+
+
+        <BaseInputText
+            v-model="newTodoText"
+            placeholder="New todo"
+            @keydown.enter="addTodo"
+        />
     </div>
     
 </template>
@@ -29,11 +56,15 @@ import ComponentC from './ComponentC.vue'
 import ComponentD from './ComponentD.vue'
 import ComponentF from './ComponentF.vue'
 import ComponentSlot from './ComponentSlot.vue'
+import ComponentMixin from './ComponentMixin.vue'
+import BaseInputText from './ComponentInput.vue'
+
 export default {
     name: 'HelloWorld',
-    components: { HelloWorldInput, ComponentB, ComponentD, ComponentF, ComponentSlot },
+    components: { HelloWorldInput, ComponentB, ComponentD, ComponentF, ComponentSlot, ComponentMixin, BaseInputText },
     data () {
         return {
+            newTodoText: "111",
             checked: true,
             a: 'A',
             b: 'success',
@@ -44,6 +75,9 @@ export default {
         }
     },
     methods: {
+        addTodo(aa) {
+            console.log('addTodo', this.newTodoText)
+        },
         changeCheckbox(checked) {
             console.log(this.checked, checked)
         },
